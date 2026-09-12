@@ -3196,9 +3196,19 @@ body {
     }
 }
 
+/* ==========================================================
+   모바일 터치 하이라이트 완전 제거
+========================================================== */
+
 * {
     -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
 }
+
+
+/* ==========================================================
+   모바일 화면 내부
+========================================================== */
 
 .mobile-screen,
 .mobile-screen * {
@@ -3206,4 +3216,42 @@ body {
     -webkit-user-select: none;
     -webkit-touch-callout: none;
     -webkit-tap-highlight-color: transparent;
+}
+
+
+/* ==========================================================
+   모바일 화면 터치 동작
+========================================================== */
+
+.mobile-screen {
+    touch-action: manipulation;
+}
+
+
+/* ==========================================================
+   클릭 가능한 요소
+========================================================== */
+
+button,
+button *,
+.object,
+.object *,
+.dialogue-box,
+.dialogue-box *,
+.choice-box,
+.choice-box *,
+.choice-button,
+.choice-button *,
+.black-scene,
+.black-scene *,
+.memory-scene,
+.memory-scene *,
+.common-route,
+.common-route *,
+.ending-scene,
+.ending-scene * {
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
 }
