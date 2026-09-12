@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>■■■■■■</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+    <main class="mobile-screen">
+
+        <!-- ========================================
+             그림 영역
+        ========================================= -->
+
+        <section class="painting-area" id="paintingArea">
+
+            <img src="images/ink-painting.png" alt="먹으로 그린 길목" class="painting">
+
+            <img src="images/ink-painting-full.png" alt="완성된 먹그림" class="painting painting-full">
+
+            <!-- 송편 -->
+
+            <button class="object songpyeon" data-name="송편"
+                data-text="바닥에 송편이 떨어져 있다. 누군가 일부러 그림에 색을 입힌 것으로 보인다."></button>
+
+        </section>
+
+
+        <!-- ========================================
+             대화창
+        ========================================= -->
+
+        <section class="dialogue-box" id="dialogueBox">
+
+            <div class="dialogue-name" id="dialogue-name"></div>
+
+            <div class="dialogue-text" id="dialogue-text"></div>
+
+        </section>
+
+
+        <!-- ========================================
+             비밀번호 팝업
+        ========================================= -->
+
+        <div class="password-overlay" id="passwordOverlay">
+
+            <div class="password-popup">
+
+                <div class="password-title">
+                    ■■■가 아이를 만났던 마을의 이름은?
+                </div>
+
+
+                <input type="text" id="passwordInput" autocomplete="off" placeholder="답을 입력하세요">
+
+
+                <button type="button" id="passwordButton">
+                    확인
+                </button>
+
+
+                <div class="password-error" id="passwordError"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================================
+             검은 화면 독백
+        ========================================= -->
+
+        <section class="black-scene" id="blackScene">
+
+            <div class="black-dialogue" id="blackDialogue">
+
+                <div class="black-dialogue-name" id="blackDialogueName"></div>
+
+                <div class="black-dialogue-text" id="blackDialogueText"></div>
+
+            </div>
+
+        </section>
+
+        <!-- 기억 연출 -->
+        <div id="memory-scene" class="memory-scene hidden">
+            <div class="memory-overlay"></div>
+
+            <div class="memory-text" id="memory-text"></div>
+
+        </div>
+
+        <!-- ==========================================================
+     기억 조각 선택
+========================================================== -->
+
+        <section class="memory-select" id="memorySelect">
+
+            <div class="memory-select-title">
+                <div>겹쳐진 기억</div>
+                <span>네 개의 기억 중 하나를 선택하세요.</span>
+            </div>
+
+            <div class="memory-choice-list">
+
+                <button class="memory-choice" data-memory="A">
+                    <strong>A</strong>
+                    <span>하늘에 남은 흔적</span>
+                </button>
+
+                <button class="memory-choice" data-memory="B">
+                    <strong>B</strong>
+                    <span>오래된 숲</span>
+                </button>
+
+                <button class="memory-choice" data-memory="C">
+                    <strong>C</strong>
+                    <span>낯선 발자국</span>
+                </button>
+
+                <button class="memory-choice" data-memory="D">
+                    <strong>D</strong>
+                    <span>기억 속의 마을</span>
+                </button>
+
+            </div>
+
+            <div class="memory-select-notice">
+                한 번 선택한 기억은<br>
+                다시 변경할 수 없습니다.
+            </div>
+
+        </section>
+
+        <!-- ==========================================================
+     그림 비교 기믹
+========================================================== -->
+
+        <section class="picture-puzzle" id="picturePuzzle">
+
+            <div class="picture-puzzle-title">
+                <div>겹쳐진 기억</div>
+                <span>두 그림 사이의 차이를 찾아보세요.</span>
+            </div>
+
+
+            <!-- 그림 비교 영역 -->
+            <div class="comparison-area">
+
+                <div class="comparison-images" id="comparisonArea">
+
+                    <img src="images/ink-painting.png" alt="기억의 원래 모습" class="comparison-image comparison-before">
+
+                    <div class="comparison-after" id="comparisonAfter">
+                        <img src="images/A.png" alt="변화한 기억" class="comparison-image">
+                    </div>
+
+                </div>
+
+
+                <input type="range" id="comparisonSlider" class="comparison-slider" min="0" max="100" value="30"
+                    aria-label="두 그림 비교하기">
+
+            </div>
+
+
+            <!-- 정답 입력 -->
+
+            <div class="puzzle-answer-area">
+
+                <div class="puzzle-question">
+                    그림에서 달라진 것은 무엇일까?
+                </div>
+
+
+                <input type="text" id="puzzleAnswerInput" class="puzzle-answer" autocomplete="off"
+                    placeholder="정답을 입력하세요">
+
+
+                <button type="button" id="puzzleAnswerButton">
+                    확인
+                </button>
+
+
+                <div class="puzzle-error" id="puzzleError"></div>
+
+            </div>
+
+        </section>
+
+        <!-- ==========================================================
+     B 기억 - 빛의 밝기 기믹
+========================================================== -->
+
+        <!-- ==========================================================
+     B 기억 - 빛의 밝기 기믹
+========================================================== -->
+
+        <section class="light-puzzle" id="lightPuzzle">
+
+            <div class="light-puzzle-title">
+                <div>숨겨진 빛</div>
+                <span>빛을 움직여 그림 속 무언가를 찾아보세요.</span>
+            </div>
+
+
+            <div class="light-canvas" id="lightCanvas">
+
+                <!-- B 그림 -->
+                <img src="images/B.png" alt="어두운 기억" class="light-puzzle-image">
+
+
+                <!-- 숨겨진 글자 -->
+                <div class="hidden-light-word" id="hiddenLightWord">
+                    빛
+                </div>
+
+
+                <!-- 검은 어둠 -->
+                <div class="dark-overlay" id="darkOverlay"></div>
+
+
+                <!-- 손전등 -->
+                <div class="light-cursor" id="lightCursor"></div>
+
+            </div>
+
+
+            <div class="light-puzzle-guide" id="lightPuzzleGuide">
+                손전등을 움직여 숨겨진 글자를 찾아보세요.
+            </div>
+
+
+            <div class="light-answer-area" id="lightAnswerArea">
+
+                <div class="light-answer-question">
+                    이곳에서 발견한 것은?
+                </div>
+
+
+                <input type="text" id="lightAnswerInput" class="light-answer-input" autocomplete="off"
+                    placeholder="정답을 입력하세요">
+
+
+                <button type="button" id="lightAnswerButton" class="light-answer-button">
+                    확인
+                </button>
+
+
+                <div class="light-answer-error" id="lightAnswerError"></div>
+
+            </div>
+
+
+            <button type="button" id="lightNextButton" class="light-next-button">
+                다음
+            </button>
+
+        </section>
+
+        <!-- ==========================================================
+     C 기억 - 발자국 기믹
+========================================================== -->
+
+        <!-- ==========================================================
+     C 기억 - 발자국 기믹 (호랑이 -> 나무 -> 달)
+========================================================== -->
+        <section class="footprint-puzzle" id="footprintPuzzle">
+
+            <div class="footprint-puzzle-title">
+                <div>낯선 발자국</div>
+                <span>남겨진 흔적을 따라가 보세요.</span>
+            </div>
+
+            <div class="footprint-canvas" id="footprintCanvas">
+
+                <!-- C 그림 -->
+                <img src="images/C.png" alt="낯선 발자국의 기억" class="footprint-image">
+
+                <!-- Step 1: 호랑이 아래 -->
+                <button type="button" class="c-footprint" data-step="1"
+                    style="left: 78%; top: 78%; transform: translate(-50%, -50%) rotate(-15deg);">
+                    <span class="paw-pad"></span>
+                    <span class="paw-toe toe-1"></span>
+                    <span class="paw-toe toe-2"></span>
+                    <span class="paw-toe toe-3"></span>
+                </button>
+
+                <!-- Step 2: 나무 밑동으로 이동 -->
+                <button type="button" class="c-footprint" data-step="2"
+                    style="left: 45%; top: 82%; transform: translate(-50%, -50%) rotate(-60deg);">
+                    <span class="paw-pad"></span>
+                    <span class="paw-toe toe-1"></span>
+                    <span class="paw-toe toe-2"></span>
+                    <span class="paw-toe toe-3"></span>
+                </button>
+
+                <!-- Step 3: 나무 줄기 타고 올라감 -->
+                <button type="button" class="c-footprint" data-step="3"
+                    style="left: 20%; top: 60%; transform: translate(-50%, -50%) rotate(-100deg);">
+                    <span class="paw-pad"></span>
+                    <span class="paw-toe toe-1"></span>
+                    <span class="paw-toe toe-2"></span>
+                    <span class="paw-toe toe-3"></span>
+                </button>
+
+                <!-- Step 4: 나무 가지 중간 -->
+                <button type="button" class="c-footprint" data-step="4"
+                    style="left: 35%; top: 38%; transform: translate(-50%, -50%) rotate(-45deg);">
+                    <span class="paw-pad"></span>
+                    <span class="paw-toe toe-1"></span>
+                    <span class="paw-toe toe-2"></span>
+                    <span class="paw-toe toe-3"></span>
+                </button>
+
+                <!-- Step 5: 달 방향 하늘 -->
+                <button type="button" class="c-footprint" data-step="5"
+                    style="left: 58%; top: 25%; transform: translate(-50%, -50%) rotate(20deg);">
+                    <span class="paw-pad"></span>
+                    <span class="paw-toe toe-1"></span>
+                    <span class="paw-toe toe-2"></span>
+                    <span class="paw-toe toe-3"></span>
+                </button>
+
+            </div>
+
+            <div class="footprint-guide" id="footprintGuide">
+                호랑이 발치에서 시작된 흔적이 보인다.
+            </div>
+
+        </section>
+
+        <!-- ==========================================================
+     D 기억 - 수묵 지우개 (숨겨진 '村' 찾기)
+========================================================== -->
+        <section class="d-puzzle-section" id="dPuzzle">
+
+            <div class="d-puzzle-title">
+                <div>기억 속의 마을</div>
+                <span>짙게 번진 먹물을 문질러 씻어내세요.</span>
+            </div>
+
+            <div class="d-canvas-container" id="dCanvasContainer">
+                <!-- 1. 배경 및 숨겨진 글자 레이어 -->
+                <div class="d-background-layer">
+                    <img src="images/D.png" alt="마을 배경" class="d-bg-img">
+                    <!-- 숨겨진 한자 '村' (달 아래/나무 사이 위치) -->
+                    <div class="hidden-char-village" id="hiddenVillageChar">村</div>
+                </div>
+
+                <!-- 2. 지워질 먹물 캔버스 레이어 -->
+                <canvas id="inkCanvas"></canvas>
+            </div>
+
+            <div class="d-puzzle-guide" id="dPuzzleGuide">
+                번진 먹물이 마을의 마지막 기억을 가리고 있다.
+            </div>
+
+        </section>
+
+        <!-- ==========================================================
+     ABCD 이후 공통 루트
+========================================================== -->
+
+        <section id="commonRoute" class="common-route">
+
+            <!-- ==========================================================
+     공통 루트 그림 등장 연출
+========================================================== -->
+
+            <div id="paintingReveal" class="painting-reveal">
+
+            </div>
+
+            <div class="common-route-image-wrap">
+
+                <img src="images/D.png" alt="수묵화 속 마을" class="common-route-image">
+
+                <!-- 송편 클릭 영역 -->
+                <button type="button" id="songpyeonObject" class="songpyeon-object" aria-label="송편"></button>
+
+            </div>
+
+        </section>
+
+        <!-- 종료 화면 -->
+        <section class="ending-scene" id="endingScene">
+
+            <div class="ending-text" id="endingText">
+                탐사를 종료합니다.
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
