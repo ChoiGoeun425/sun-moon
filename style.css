@@ -3195,3 +3195,15 @@ body {
         opacity: 0;
     }
 }
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-screen,
+.mobile-screen * {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+}
